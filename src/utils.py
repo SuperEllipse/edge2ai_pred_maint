@@ -58,17 +58,18 @@ def prepare_test_data(test_record) :
         raise
 
     array_record = np.asarray(test_record).reshape((-1), len(COLUMNNAMES))
-#    print(array_record)
+    #print(array_record)
     X_test = pd.DataFrame(array_record, columns= COLUMNNAMES)
-#    print(X_test)  
+    #print(X_test)  
               
     # drop columns that have no impact on Models
     X_test.drop(labels=COLUMNSTOREMOVE, axis=1, inplace=True)
-  #  print(X_test)
+    #print(X_test)
     return X_test.to_numpy()
 
-def run_model_inference( model, test_record) :    
+def run_model_inference( model, scaler, test_record) :    
   X_test = prepare_test_data(test_record)
-  return model.predict(X_test)   
+  X_test_scl = scaler.transform(X_test)
+  return model.predict(X_test_scl)   
 
 
