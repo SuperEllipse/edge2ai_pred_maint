@@ -11,9 +11,21 @@ It provides two categories of capabilities:<br>
 * **Edge Data Collection:** MiNiFi is a lightweight edge agent that implements the core features of Apache NiFi, focusing on data collection and processing at the edge. The MiNiFi agents come in two flavors: MiNiFi Java agents for full capabilities of Apache NiFi and MiNiFi C++ for very low footprint agents
 * **Edge Flow Management:** Edge Flow Manager is an agent management hub that provides a low-code experience for designing, deploying, and monitoring edge flow applications on thousands of MiNiFi agents. It also acts as the single management and monitoring layer for all the MiNiFi agents deployed at the edge. EFM supports the entire edge flow lifecycle including authorship, deployment, and monitoring  
 
-## High-level Architecture
+## **High-level Architecture**
 
 ![Architectural View](./others/Architecture.png?raw=true "Optional Title")
+
+## **Structure**
+````
+.
+|-- data  # The dataset in use: data1 for e.g has 27 variables including 2 settings and 15 sensor readings
+|-- jobs  # This folder will have jobs(tbd) to transfer the model to a remote server for edge deployment 
+|-- model # The serialized model .pkl file will be be persisted here
+|-- src   # All the source code for the project including setup files
+    |-- Predictive Maintenance.ipynb  #Notebook that describes the workflow from dataload to model persist
+    |-- run_inference_test.py # Tests that model can be loaded from disc and serves inference
+|-- images # image file for the architecture etc. 
+````
 
 ## **Use Case Description:** 
 

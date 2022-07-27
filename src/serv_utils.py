@@ -67,9 +67,13 @@ def prepare_test_data(test_record) :
     #print(X_test)
     return X_test.to_numpy()
 
-def run_model_inference( model, scaler, test_record) :    
+def run_model_inference_reg( model, scaler, test_record) :    
   X_test = prepare_test_data(test_record)
   X_test_scl = scaler.transform(X_test)
   return model.predict(X_test_scl)   
 
 
+def run_model_inference_clf( model, scaler, test_record) :    
+  X_test = prepare_test_data(test_record)
+  X_test_scl = scaler.transform(X_test)
+  return model.predict(X_test_scl), model.predict_proba(X_test_scl)
