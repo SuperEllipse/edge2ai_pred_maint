@@ -70,8 +70,8 @@ def cross_validate(model, X_values, y_values):
     results = cross_val_score(model, X_values, y_values,scoring='neg_mean_absolute_error',  cv=kfold)
     print("Cross Validation : %0.2f accuracy with a standard deviation of %0.2f" % (np.absolute(results.mean()), results.std())) # Train set needs to be refined further
 
-def save_model( scaler, model, path, filename):
-
-    serializer  = [scaler, model]
+def save_models( scaler, model, path, filename):
+    # Order of serialization is Scaler, Regressor, Classifier
+    serializer  = [scaler, model[0], model[1]]
     with open(path+filename, 'wb') as files:
         pickle.dump(serializer, files)

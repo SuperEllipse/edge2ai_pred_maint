@@ -12,7 +12,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from sklearn.preprocessing import StandardScaler
 from  seaborn import heatmap
-from train_utils import columnsToDrop, evaluate, plot_graph, cross_validate, cross_val_score, processTestData, save_model
+from train_utils import columnsToDrop, evaluate, plot_graph, cross_validate, cross_val_score, processTestData, save_models
 
 #DEFAULT VALUES
 file = 'FD001'
@@ -186,4 +186,6 @@ print(f"AUC: {AUC}")
 # save the model, the path needs to be in Environment variables after refactoring
 model_name = "pred_RUL.pkl"
 path = "./model/"
-save_model(scaler, xgbr_model, path, model_name )
+#save_model(scaler, xgbr_model, path, model_name )
+models_to_disc = [xgbr_model, xgbCl_model]
+save_models(scaler, models_to_disc, path, model_name )
