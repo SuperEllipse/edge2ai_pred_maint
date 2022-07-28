@@ -1,12 +1,11 @@
 # **Predictive Maintenance at the Edge**
 ## **Motivations:**
-Predictive maintenance stems from the goal of predicting the future trend of equipment condition. This condition based monitoring drives the goal of performing asset maintenance at a scheduled point in a cost effective manner, with an objective of reducing unplanned downtime avoiding loss of revenue, significant  cost reductions from improved asset lifespan and fines from loss of delivery. 
 
-Traditional computing architecture based predictive analytics engine relies on the model training and serving computations hosted on an on prem, cloud or hybrid infrastructure. The engine is invoked by a remote asset over a network with data on which the engine provides the inferences. This to and fro information exchange between the data generating asset and the predictive engine suffers from latency, potential dependence on network bandwidth and stability.
- 
- As connected devices proliferate in Industrial assets, there will be use cases of computation locally on these devices driven by limited or intermittent network connectivity, need for real-time decision making and XX. Additionally, Edge data processing and computations are made on devices with constrained power, compute and storage capabilities. 
+Traditional computing architecture based predictive analytics engine relies on the model training and serving computations hosted on on-prem, cloud or hybrid infrastructure. The engine is invoked by a remote asset over a network with data on which the engine provides the inferences. This to and fro information exchange between the data generating asset and the predictive engine suffers from latency, potential dependence on network bandwidth and stability.
+
+As connected devices proliferate in Industrial assets, there will be use cases of local computation on these devices driven by limited or intermittent network connectivity and need for real-time decision making. These devises at the edge may additionally have specific data processing challenges as driven by constraints in  power consumption, compute, memory and storage capabilities. 
+
 Cloudera Edge Management (CEM) manages, controls, and monitors data collection and processing at the edge with a low code authorship experience addressing data management challenges with streaming and IoT use cases.
-
 It provides two categories of capabilities:<br>
 * **Edge Data Collection:** MiNiFi is a lightweight edge agent that implements the core features of Apache NiFi, focusing on data collection and processing at the edge. The MiNiFi agents come in two flavors: MiNiFi Java agents for full capabilities of Apache NiFi and MiNiFi C++ for very low footprint agents
 * **Edge Flow Management:** Edge Flow Manager is an agent management hub that provides a low-code experience for designing, deploying, and monitoring edge flow applications on thousands of MiNiFi agents. It also acts as the single management and monitoring layer for all the MiNiFi agents deployed at the edge. EFM supports the entire edge flow lifecycle including authorship, deployment, and monitoring  
@@ -16,7 +15,7 @@ https://blog.cloudera.com/using-cml-to-build-a-predictive-maintenance-model-for-
 
 This project uses simulation data sets from NASA that measures engine component degradation for turbofan jet engines. The models in this project are built on Cloudera Machine Learning Platform( CML) and are based on inputting various engine parameters showing typical sensor values of engine temperature, fuel consumption, vibration, or fuel to oxygen mixture (see Fig below). One item to note is that the term “failure” is not to imply catastrophic failure, but rather, that one of its components (pumps, values, etc) is not operating to specification. Airlines design their aircraft to operate at 99.999% reliability. 
 Based on the provided independent variables, our objective is to predict  
-- Remaining Useful Life ( RUL) measured in timecycles ( it is not known if unit of this timecycle)
+- Remaining Useful Life ( RUL) measured in timecycles ( the specific unit of measurement of this timecycle is unknown )
 - Propensity of failure (i.e. if the engine is likely to fail given a predefined training threshold of remaining useful life). If the predicted RUL is less than this threshold then we predict engine is likely to fail along with failure probability
 
 Finally, the overall objective of this project is to show how Cloudera Data Platform enables the workflow pertaining to this use case. Therefore we will focus less on the machine learning techniques adopted.  
@@ -32,10 +31,10 @@ The machine learning workflow comprising of data ingestion, exploration, feature
 ## **Project Structure**
 ````
 .EDGE2AI_PRED_MAINT
-|-- data  # The datasets for model training ( for now we use FD001)
-|-- jobs  # Will host the job in future to transfer the model to a remote CFM server for edge deployment 
-|-- model # The serialized models are  persisted in a .pkl file 
-|-- src   # All the source code for the project including setup files
+|-- data   # The datasets for model training ( for now we use FD001)
+|-- jobs   # Will host the job in future to transfer the model to a remote CFM server for edge deployment 
+|-- model  # The serialized models are  persisted in a .pkl file 
+|-- src    # All the source code for the project including setup files
 |-- images # image file for the architecture etc. 
 
 Besides this you will find an archive folder, which can be ignored for this project. 
@@ -53,12 +52,12 @@ Each dataset code  eg. FD001 files should be analyzed at together for training, 
 ````
 .EDGE2AI_PRED_MAINT
 |-- src
-    |-- model_training.py # Model training and comparison against baseline
+    |-- model_training.py            # Model training and comparison against baseline
     |-- Predictive Maintenance.ipynb # Notebook for Feature Exploration, model performance comparison
-    |-- requirements.txt # packages and versions
-    |-- run_inference_test.py #Checks predictions against sample data, to be deployed at Edge
-    |-- serv_utils.py # lightweight utility functions, to be deployed at Edge
-    |-- train_utils.py # utility functions for model training
+    |-- requirements.txt             # packages and versions
+    |-- run_inference_test.py        # Checks predictions against sample data, to be deployed at Edge
+    |-- serv_utils.py                # lightweight utility functions, to be deployed at Edge
+    |-- train_utils.py               # utility functions for model training
 
 ````
 ## **Model**
@@ -71,7 +70,7 @@ This folder hosts the trained models. There is already are already pretrained mo
 -  Launch a New CML Project 
 -  Create a pull request for this project from github
 -  Launch a new Project Session with default parameters
--  run the following command on Project Terminal to setup the necessary Python packages
+-  run the following command by launching Terminal to setup the necessary Python packages 
 ````
 sh ./src/cdsw-build.sh
 ````

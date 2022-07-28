@@ -12,7 +12,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from sklearn.preprocessing import StandardScaler
 from  seaborn import heatmap
-from train_utils import columnsToDrop, evaluate, plot_graph, cross_validate, cross_val_score, processTestData, save_models
+from src.train_utils import columnsToDrop, evaluate, plot_graph, cross_validate, cross_val_score, processTestData, save_models
 
 #DEFAULT VALUES
 file = 'FD001'
