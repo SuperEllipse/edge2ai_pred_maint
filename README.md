@@ -20,13 +20,12 @@ Based on the provided independent variables, our objective is to predict
 
 Finally, the overall objective of this project is to show how Cloudera Data Platform enables the workflow pertaining to this use case. Therefore we will focus less on the machine learning techniques adopted.  
 
-![](./images/jet-engine-graphic.png?raw=true "Optional Title")
+![Jet Engine Picture](./images/jet-engine-graphic.png)
 
 ## **Conceptual Architecture**
-<br>
-The machine learning workflow comprising of data ingestion, exploration, feature engineering and model training is performed in the CML Server. The best performing models are then transferred over network in this case to a Cloudera Flow Manager via REST API. The CFM then transfer the model to the agents at the Edge for inference Serving. ( Refer to the figure below)
+<br>The machine learning workflow comprising of data ingestion, exploration, feature engineering and model training is performed in the CML Server. The best performing models are then transferred over network in this case to a Cloudera Flow Manager via REST API. The CFM then transfer the model to the agents at the Edge for inference Serving. ( Refer to the figure below)
 
-![Architectural View](./images/Architecture.png?raw=true "Optional Title")
+![Architectural View](./images/Architecture.png)
 
 ## **Project Structure**
 ````
