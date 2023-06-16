@@ -137,25 +137,25 @@ evaluate(y_test, y_hat_test_xgbr, 'test')
 STEP 2E:# training a Regression MLP using Sequential API   
 """
 
-
-from sklearn.model_selection import train_test_split
-from tensorflow  import keras 
-
-X_train_sub1, X_valid, y_train_sub1, y_valid = train_test_split(X_train, y_train)
-scaler_mlp = StandardScaler()
-X_train_sub1_scaled = scaler_mlp.fit_transform(X_train_sub1)
-X_valid_scaled = scaler_mlp.transform(X_valid)
-X_test_scaled = scaler_mlp.transform(X_test)
-
-model = keras.models.Sequential([
- keras.layers.Dense(100, activation="relu", input_shape=X_train_sub1_scaled.shape[1:]),
- keras.layers.Dense(1)
- ])
-model.compile(loss="mse", optimizer="adam",   metrics=[keras.metrics.RootMeanSquaredError()])
-model.fit(X_train_sub1_scaled, y_train_sub1, epochs=20,
-                    validation_data=(X_valid, y_valid))
-y_hat_test_MLP = model.predict(X_test_scaled)
-evaluate(y_test, y_hat_test_MLP)
+#
+#from sklearn.model_selection import train_test_split
+#from tensorflow  import keras 
+#
+#X_train_sub1, X_valid, y_train_sub1, y_valid = train_test_split(X_train, y_train)
+#scaler_mlp = StandardScaler()
+#X_train_sub1_scaled = scaler_mlp.fit_transform(X_train_sub1)
+#X_valid_scaled = scaler_mlp.transform(X_valid)
+#X_test_scaled = scaler_mlp.transform(X_test)
+#
+#model = keras.models.Sequential([
+# keras.layers.Dense(100, activation="relu", input_shape=X_train_sub1_scaled.shape[1:]),
+# keras.layers.Dense(1)
+# ])
+#model.compile(loss="mse", optimizer="adam",   metrics=[keras.metrics.RootMeanSquaredError()])
+#model.fit(X_train_sub1_scaled, y_train_sub1, epochs=20,
+#                    validation_data=(X_valid, y_valid))
+#y_hat_test_MLP = model.predict(X_test_scaled)
+#evaluate(y_test, y_hat_test_MLP)
 
 """
 STEP 4: Training an  XGBoost Classifiers for Classifying Fail/ Not Fail based on predefined Threshold
